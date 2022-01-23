@@ -99,7 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget mytask(int index) {
     return Dismissible(
       key: UniqueKey(),
-      // onDismissed: () {},
+      onDismissed: (kierunek) {
+        if (kierunek == DismissDirection.startToEnd ||
+            kierunek == DismissDirection.endToStart) my_tasks.removeAt(index);
+      },
       child: Column(
         children: [
           Row(
