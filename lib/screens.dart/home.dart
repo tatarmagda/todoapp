@@ -4,7 +4,7 @@ import 'package:todoapp/Widgets/text_widget.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  List<String> my_task = [
+  List<String> my_tasks = [
     "1",
     "2",
     "3",
@@ -50,15 +50,41 @@ class MyHomePage extends StatelessWidget {
               color: Colors.purple[200],
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: my_task.length,
-            itemBuilder: (context, index) {
-              return Text(index.toString());
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: my_tasks.length,
+              itemBuilder: (context, index) {
+                return mytask(index);
+              },
+            ),
           )
         ],
       ),
+    );
+  }
+
+  Widget mytask(int index) {
+    bool ischecked = false;
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Checkbox(value: ischecked, onChanged: (ischecked) {}),
+            MyTextWidget(
+              text: my_tasks[index].toString(),
+              color: Colors.black,
+              size: 15.0,
+            ),
+          ],
+        ),
+        Divider(
+          color: Colors.purple,
+          thickness: 1.0,
+        )
+      ],
     );
   }
 }
