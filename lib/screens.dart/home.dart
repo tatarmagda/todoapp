@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/Widgets/text_widget.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  List<String> my_tasks = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-  ];
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<Map> my_tasks = [];
+  Map<String, dynamic> my_first_Map = {
+    "Checkboks": false,
+    "Text": "test",
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    my_tasks.add(my_first_Map);
+  }
+
   TextEditingController controller = TextEditingController();
+  String my_imput = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +35,7 @@ class MyHomePage extends StatelessWidget {
         ),
         //actions - dodaje więcej (tak jak plusik) wszytsko po prawej stronie w appbarze
         actions: [
-          IconButton(
-              onPressed: () {
-                print("nie działa");
-              },
-              icon: Icon(
-                Icons.add,
-              ))
+          my_add_button(),
         ],
         // (){} - pusta funkcja
       ),
@@ -41,19 +46,19 @@ class MyHomePage extends StatelessWidget {
           Center(
             child: Container(
               child: TextFormField(
-                onChanged: (string) {
-                  print(string);
-                },
-                keyboardType: TextInputType.number,
+                // onChanged: (string) {
+                //   setState(() {
+                //     my_imput = string;
+                //     my_tasks.add(my_imput);
+                //   });
+                // },
+                controller: controller,
+                keyboardType: TextInputType.text,
                 minLines: 1,
                 maxLines: 5,
                 autofocus: true,
                 decoration: InputDecoration(
-                    prefixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add),
-                    ),
-                    border: InputBorder.none),
+                    prefixIcon: my_add_button(), border: InputBorder.none),
               ),
               width: MediaQuery.of(context).size.width - 12,
               // height: 100.0,
@@ -63,6 +68,7 @@ class MyHomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: my_tasks.length,
               itemBuilder: (context, index) {
@@ -72,6 +78,18 @@ class MyHomePage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  IconButton my_add_button() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          // my_tasks.add(controller.text);
+          controller.clear();
+        });
+      },
+      icon: Icon(Icons.add),
     );
   }
 
@@ -87,7 +105,7 @@ class MyHomePage extends StatelessWidget {
             children: [
               Checkbox(value: ischecked, onChanged: (ischecked) {}),
               MyTextWidget(
-                text: my_tasks[index].toString(),
+                text: my_tasks[index].values.elementAt(1).toString(),
                 color: Colors.black,
                 size: 15.0,
               ),
