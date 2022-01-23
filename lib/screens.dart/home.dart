@@ -12,7 +12,7 @@ class MyHomePage extends StatelessWidget {
     "5",
     "6",
   ];
-
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +40,23 @@ class MyHomePage extends StatelessWidget {
           // Center jest stricte rodzicem i każe robić dokładnie co chcemy
           Center(
             child: Container(
-              child: TextFormField(),
+              child: TextFormField(
+                onChanged: (string) {
+                  print(string);
+                },
+                keyboardType: TextInputType.number,
+                minLines: 1,
+                maxLines: 5,
+                autofocus: true,
+                decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.add),
+                    ),
+                    border: InputBorder.none),
+              ),
               width: MediaQuery.of(context).size.width - 12,
-              height: 100.0,
+              // height: 100.0,
               color: Colors.purple[200],
             ),
           ),
@@ -79,7 +93,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ],
           ),
-          Divider(
+          const Divider(
             color: Colors.purple,
             thickness: 2.0,
           )
