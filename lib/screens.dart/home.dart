@@ -40,11 +40,7 @@ class MyHomePage extends StatelessWidget {
           // Center jest stricte rodzicem i każe robić dokładnie co chcemy
           Center(
             child: Container(
-              child: MyTextWidget(
-                color: Colors.black,
-                size: 20.0,
-                text: "wpisz co chcesz",
-              ),
+              child: TextFormField(),
               width: MediaQuery.of(context).size.width - 12,
               height: 100.0,
               color: Colors.purple[200],
@@ -67,24 +63,28 @@ class MyHomePage extends StatelessWidget {
 
   Widget mytask(int index) {
     bool ischecked = false;
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Checkbox(value: ischecked, onChanged: (ischecked) {}),
-            MyTextWidget(
-              text: my_tasks[index].toString(),
-              color: Colors.black,
-              size: 15.0,
-            ),
-          ],
-        ),
-        Divider(
-          color: Colors.purple,
-          thickness: 1.0,
-        )
-      ],
+    return Dismissible(
+      key: UniqueKey(),
+      // onDismissed: () {},
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Checkbox(value: ischecked, onChanged: (ischecked) {}),
+              MyTextWidget(
+                text: my_tasks[index].toString(),
+                color: Colors.black,
+                size: 15.0,
+              ),
+            ],
+          ),
+          Divider(
+            color: Colors.purple,
+            thickness: 2.0,
+          )
+        ],
+      ),
     );
   }
 }
