@@ -10,15 +10,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Map> my_tasks = [];
-  Map<String, dynamic> my_first_Map = {
-    "Checkboks": false,
-    "Text": "test",
-  };
 
   @override
   void initState() {
     super.initState();
-    my_tasks.add(my_first_Map);
   }
 
   TextEditingController controller = TextEditingController();
@@ -86,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       onPressed: () {
         Map new_Map = {};
         new_Map["Checkboks"] = false;
+
         new_Map["Tekst"] = controller.text;
         setState(() {
           my_tasks.add(new_Map);
@@ -120,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: my_tasks[index].values.elementAt(1).toString(),
                 color: Colors.black,
                 size: 15.0,
+                decoration: TextDecoration.lineThrough,
               ),
             ],
           ),
