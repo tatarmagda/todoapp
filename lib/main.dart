@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/screens.dart/home.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:lol2/Screens/home-drawer.dart';
+import 'package:lol2/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return runApp(
+    ChangeNotifierProvider(
+      child: const MyApp(),
+      create: (BuildContext context) =>
+          ThemeProvider(isDarkMode: prefs.getBool('isDarkTheme') ?? false),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,12 +22,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-        ),
+    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyHomePage());
+        title: 'Flutter Demo',
+        theme: themeProvider.getTheme,
+        home: MyHomePage(),
+      );
+    });
   }
 }
