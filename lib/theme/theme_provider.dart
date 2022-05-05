@@ -4,7 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ThemeProvider extends ChangeNotifier {
   late ThemeData _selectedTheme;
 
-  ThemeData light = ThemeData.light().copyWith(backgroundColor: Colors.white);
+  ThemeData light = ThemeData.light().copyWith(
+      backgroundColor: Colors.white,
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.teal),
+      textTheme: TextTheme(
+        headline1: TextStyle(
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+      ));
 
   ThemeData dark = ThemeData.dark().copyWith(backgroundColor: Colors.black);
 

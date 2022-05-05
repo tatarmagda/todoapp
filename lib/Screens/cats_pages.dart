@@ -21,6 +21,9 @@ class _CatsPageState extends State<CatsPage> {
       },
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          centerTitle: true,
+          titleTextStyle: Theme.of(context).textTheme.headline1,
           title: Text("Press anywhere you want ;)"),
         ),
         body: AnimatedCat(),
@@ -29,7 +32,7 @@ class _CatsPageState extends State<CatsPage> {
   }
 
   AnimatedCat() {
-    Container(
+    return Container(
       width: double.infinity,
       height: double.infinity,
       child: AnimatedAlign(

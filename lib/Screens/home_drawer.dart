@@ -23,8 +23,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
           title: Text(" To Do App"),
+          titleTextStyle: Theme.of(context).textTheme.headline1,
           leading: Builder(
             builder: (context) => IconButton(
               icon: Icon(FontAwesomeIcons.ellipsis),
