@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class CatsPage extends StatefulWidget {
@@ -24,19 +23,23 @@ class _CatsPageState extends State<CatsPage> {
         appBar: AppBar(
           title: Text("Press anywhere you want ;)"),
         ),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: AnimatedAlign(
-            alignment: selected ? Alignment.topRight : Alignment.bottomLeft,
-            duration: Duration(seconds: numbersShuffle()),
-            curve: Curves.fastOutSlowIn,
-            child: Image.asset(
-              "assets/cat.png",
-              height: 200,
-              width: 200,
-            ),
-          ),
+        body: AnimatedCat(),
+      ),
+    );
+  }
+
+  AnimatedCat() {
+    Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: AnimatedAlign(
+        alignment: selected ? Alignment.topRight : Alignment.bottomLeft,
+        duration: Duration(seconds: numbersShuffle()),
+        curve: Curves.fastOutSlowIn,
+        child: Image.asset(
+          "assets/cat.png",
+          height: 200,
+          width: 200,
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:lol2/Screens/home-drawer.dart';
+import 'package:lol2/Screens/home_drawer.dart';
 import 'package:lol2/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: themeProvider.getTheme,
-        home: MyHomePage(),
+        home: const MyHomePage(),
       );
     });
   }

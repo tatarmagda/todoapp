@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lol2/theme/MyTextDecoration.dart';
+import 'package:lol2/theme/my_text_decoration.dart';
 import 'package:lol2/screens/cats_pages.dart';
 
 class ToDoApp extends StatefulWidget {
