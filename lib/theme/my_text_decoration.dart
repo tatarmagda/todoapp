@@ -18,11 +18,10 @@ class MyTextDecoration extends StatelessWidget {
       softWrap: true,
       maxLines: 2,
       style: TextStyle(
-          fontFamily: GoogleFonts.poppins().fontFamily,
           fontWeight: FontWeight.w600,
           overflow: TextOverflow.ellipsis,
           fontSize: checkbox == true ? 14 : 15,
-          color: checkbox == true ? Colors.grey : Colors.black87,
+          color: checkbox == true ? Colors.grey : Theme.of(context).accentColor,
           decoration: checkbox == true
               ? TextDecoration.lineThrough
               : TextDecoration.none),

@@ -43,11 +43,9 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
                   children: [
                     Material(
                       elevation: 10,
-                      shadowColor: Colors.black54,
+                      shadowColor: Theme.of(context).shadowColor,
                       child: TextFormField(
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.poppins().fontFamily,
-                        ),
+                        style: Theme.of(context).textTheme.headline3,
                         controller: _controller,
                         keyboardType: TextInputType.text,
                         minLines: 1,

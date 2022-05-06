@@ -66,13 +66,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(top: 10),
                       child: MySocialPage(),
                     ),
-                    Switch(
-                        value: _themeProvder,
-                        onChanged: (changer) {
-                          _themeProvder = !_themeProvder;
-                          Provider.of<ThemeProvider>(context, listen: false);
-                          themeProvider.swapTheme();
-                        })
+                    Row(
+                      children: [
+                        Switch(
+                            value: _themeProvder,
+                            activeColor: Theme.of(context).primaryColor,
+                            onChanged: (changer) {
+                              _themeProvder = !_themeProvder;
+                              Provider.of<ThemeProvider>(context,
+                                  listen: false);
+                              themeProvider.swapTheme();
+                            }),
+                        _themeProvder
+                            ? Text("Switch on light mode",
+                                style: Theme.of(context).textTheme.headline3)
+                            : Text("Switch on dark mode",
+                                style: Theme.of(context).textTheme.headline3),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -112,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget MyProfile() {
     return DrawerHeader(
-      decoration: const BoxDecoration(color: Color.fromARGB(255, 70, 70, 70)),
+      decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: Stack(
         children: [
           Row(
@@ -149,14 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Icon(Icons.phone_android),
         ),
         TextSpan(
-          text: "  791 - 477 - 439",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-          recognizer: TapGestureRecognizer()..onTap = launchPhoneNumber,
-        ),
+            text: "  791 - 477 - 439",
+            recognizer: TapGestureRecognizer()..onTap = launchPhoneNumber,
+            style: Theme.of(context).textTheme.headline2),
       ],
     );
   }
@@ -171,14 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           TextSpan(
-            text: "  Email",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Theme.of(context).secondaryHeaderColor,
-            ),
-            recognizer: TapGestureRecognizer()..onTap = launchEmail,
-          ),
+              text: "  Email",
+              recognizer: TapGestureRecognizer()..onTap = launchEmail,
+              style: Theme.of(context).textTheme.headline2),
         ],
       ),
     );
@@ -187,14 +188,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget MySocialPage() {
     return RichText(
       text: TextSpan(
-        text: "My Social Page",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: Theme.of(context).secondaryHeaderColor,
-        ),
-        recognizer: TapGestureRecognizer()..onTap = launchSocialPage,
-      ),
+          text: "My Social Page",
+          recognizer: TapGestureRecognizer()..onTap = launchSocialPage,
+          style: Theme.of(context).textTheme.headline2),
     );
   }
 
